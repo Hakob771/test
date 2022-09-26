@@ -25,8 +25,9 @@ jobs:
       
       - name: Merge
         if: steps.branch_name.outputs.current_branch == 'donotremove'
-        uses: devmasx/merge-branch@1.4.0
+        uses: safinazawad/merge-branch@1.0.0
         with:
-          type: now
-          target_branch: uat
-          github_token: ${{ github.GIT_TOKEN }}
+          github_token: ${{ secrets.GIT_TOKEN }}
+          source_branch: 'main'
+          target_branch: ${{ steps.branch_name.outputs.current_branch }}
+          commit_message: 'Merged branch source into target'
