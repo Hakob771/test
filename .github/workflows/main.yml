@@ -1,6 +1,9 @@
 name: Merge 
 
 on:  
+  push:
+    branches:
+      - donotremove
   pull_request:
     types: 
       - closed
