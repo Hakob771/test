@@ -25,7 +25,7 @@ jobs:
       
       - name: Merge
         if: steps.branch_name.outputs.current_branch == 'donotremove'
-        uses: safinazawad/merge-branch@1.0.0
+        uses: safinazward/merge-branch@1.0.3
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
           source_branch: 'main'
