@@ -1,9 +1,6 @@
 name: Merge 
 
 on:  
-  push:
-    branches:
-      - donotremove
   pull_request:
     types: 
       - closed
@@ -14,7 +11,7 @@ jobs:
     
     steps:
       - name: debug
-        run: echo ${{ github }}
+        run: echo ${{ github.events.pull_request.merged }}
       
 #      - name: checkout
 #        uses: actions/checkout@v3
