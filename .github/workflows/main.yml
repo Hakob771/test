@@ -9,7 +9,7 @@ jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
-    if: github.event.merged == true
+    #if: github.event.merged == true
     
     steps:
       - name: debug
