@@ -9,10 +9,12 @@ jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
+    if: github.event.merged == true
+    
     steps:
       - name: debug
         env:
-          GITHUB_CONTEXT: ${{ toJson(github.event) }}
+          GITHUB_CONTEXT: ${{ toJson(github.event.merged) }}
         run: echo $GITHUB_CONTEXT
       
 #      - name: checkout
