@@ -25,8 +25,8 @@ jobs:
       
       - name: Merge
         if: steps.branch_name.outputs.current_branch == 'donotremove'
-        uses: tukasz/direct-merge-action@v2.0.2
+        uses: devmasx/merge-branch@1.4.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          source_branch: ${{ steps.branch_name.outputs.current_branch }}
-          target_branch: main
+          type: now
+          target_branch: uat
+          github_token: ${{ github.GIT_TOKEN }}
