@@ -13,9 +13,7 @@ jobs:
     
     steps:
       - name: debug
-        env:
-          GITHUB_CONTEXT: ${{ github.merged }}
-        run: echo $GITHUB_CONTEXT
+        run: echo ${{ github.event.merged }}
       
 #      - name: checkout
 #        uses: actions/checkout@v3
