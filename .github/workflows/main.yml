@@ -1,0 +1,17 @@
+name: Merge 
+
+on:
+  push:
+    branches: 
+      - main
+  pull_request:
+    types: 
+      - closed
+      
+jobs:
+  mergeAndDeleteBranch:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: just
+        run: echo ${{ github.event }}
