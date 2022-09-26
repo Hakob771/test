@@ -13,7 +13,7 @@ jobs:
     
     steps:
       - name: debug
-        run: echo ${{ fromJSON(github.event.merged) }}
+        run: echo ${{ toJSON(github.event.merged) }}
       
 #      - name: checkout
 #        uses: actions/checkout@v3
