@@ -4,30 +4,37 @@ on:
   pull_request:
     types: 
       - closed
-      
+    
 jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
+    if: github.event.merged == true
+    
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: get branch name 2tj-actions/branch-names@v6
-        id: branch_name
-        uses: tj-actions/branch-names@v6
-  
-      - name: Merge and Delete
-        if: steps.branch_name.outputs.current_branch != 'donotremove'
-        uses: SvanBoxel/delete-merged-branch@main
+      - name: debug
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITHUB_CONTEXT: ${{ toJson(github.event.merged) }}
+        run: echo $GITHUB_CONTEXT
       
-      - name: Merge
-        if: steps.branch_name.outputs.current_branch == 'donotremove'
-        uses: safinazward/merge-branch@1.0.3
-        with:
-          github_token: ${{ secrets.GIT_TOKEN }}
-          source_branch: 'main'
-          target_branch: ${{ steps.branch_name.outputs.current_branch }}
-          commit_message: 'Merged branch source into target'
+#      - name: checkout
+#        uses: actions/checkout@v3
+#
+#      - name: get branch name 2tj-actions/branch-names@v6
+#        id: branch_name
+#        uses: tj-actions/branch-names@v6
+  
+#      - name: Merge and Delete
+#        if: steps.branch_name.outputs.current_branch != 'donotremove'
+#        uses: SvanBoxel/delete-merged-branch@main
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      
+#      - name: Merge
+#        if: steps.branch_name.outputs.current_branch == 'donotremove'
+#        uses: safinazward/merge-branch@1.0.3
+#        with:
+#          github_token: ${{ secrets.GIT_TOKEN }}
+#          source_branch: 'main'
+#          target_branch: ${{ steps.branch_name.outputs.current_branch }}
+#          commit_message: 'Merged branch source into target'
