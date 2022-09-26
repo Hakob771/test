@@ -17,6 +17,9 @@ jobs:
         id: branch_name
         uses: tj-actions/branch-names@v6
   
+      - name: echo branch name
+        run: echo ${{ steps.branch_name.outputs.current_branch }}
+  
       - name: Merge and Delete
         if: steps.branch_name.outputs.current_branch != 'donotremove'
         uses: SvanBoxel/delete-merged-branch@main
@@ -30,3 +33,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           source_branch: ${{ steps.branch_name.outputs.current_branch }}
           target_branch: main
+          owner: current_owner
+          repo: test
+          commit-message: 'shty spes'
