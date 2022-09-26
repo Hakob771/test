@@ -11,7 +11,9 @@ jobs:
     
     steps:
       - name: debug
-        run: echo ${{ github.events.pull_request.merged }}
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo $GITHUB_CONTEXT
       
 #      - name: checkout
 #        uses: actions/checkout@v3
