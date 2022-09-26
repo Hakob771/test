@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: debug
         env:
-          GITHUB_CONTEXT: ${{ toJson(github.pull_request) }}
+          GITHUB_CONTEXT: ${{ toJson(github.events) }}
         run: echo $GITHUB_CONTEXT
       
 #      - name: checkout
