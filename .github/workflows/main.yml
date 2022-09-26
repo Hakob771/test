@@ -1,11 +1,6 @@
 name: Merge 
 
-on:
-  push:
-    branches: 
-      - main
-      - shty
-      
+on:  
   pull_request:
     types: 
       - closed
@@ -15,5 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: just
-        run: echo ${{ github.event }}
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: get branch name 2tj-actions/branch-names@v6
+        id: branch_name
+        uses: tj-actions/branch-names@v6
+  
+      - name: Merge and Delete
+        if: steps.branch_name.outputs.current_branch != 'donotremove'
+        uses: SvanBoxel/delete-merged-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      
+      - name: Merge
+        if: steps.branch_name.outputs.current_branch == 'donotremove'
+        uses: tukasz/direct-merge-action@v2.0.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          source_branch: ${{ steps.branch_name.outputs.current_branch }}
+          target_branch: main
