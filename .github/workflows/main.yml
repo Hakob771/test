@@ -15,7 +15,7 @@ jobs:
         run: echo ${{ toJson(github.event.pull_request.merged) }}
         
       - name: uxaki
-        run: echo ${{ steps.is_merged }}
+        run: echo ${{ steps.is_merged.outputs }}
         
       - if: ${{ toJson(github.event.pull_request.merged) }} == 'false'
         run: exit 1
