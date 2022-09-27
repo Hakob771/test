@@ -9,17 +9,11 @@ jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
+    if: toJson(github.event.pull_request.merged) == true
+    
     steps:
-      - id: payload
-        uses: Dovyski/payload-info-action@master
-        with:
-          filter_push: '.merged'
-          filter_pull_request: '.merged'
-        
       - name: shtyspes
-        env: 
-          MERGED: ${{ toJson(steps.payload.outputs) }}
-        run: echo $MERGED
+        run: echo "hello"
 #      - name: checkout
 #        uses: actions/checkout@v3
 
