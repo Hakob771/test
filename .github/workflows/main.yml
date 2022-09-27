@@ -1,24 +1,26 @@
-name: Merge 
+name: Merge workflow
 
 on:  
   pull_request:
     types: 
       - closed
-    
+      
 jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
-    #if: github.event.merged == true
-    
     steps:
-      - name: debug
-        run: echo ${{ toJSON(github) }}
-      
+      - name: Get current Merge info
+        id: merge_info
+        uses: 8BitJonny/gh-get-current-pr@2.1.1
+        
+      - name: Check merge info
+        run: echo fromJSON(steps.merge_info.outputs)
+    
 #      - name: checkout
 #        uses: actions/checkout@v3
-#
-#      - name: get branch name 2tj-actions/branch-names@v6
+
+#      - name: get branch name
 #        id: branch_name
 #        uses: tj-actions/branch-names@v6
   
