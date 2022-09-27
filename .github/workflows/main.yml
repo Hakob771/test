@@ -10,8 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: debug
+      - name: Merged value
+        id: is_merged
         run: echo ${{ toJson(github.event.pull_request.merged) }}
+        
+      - name: uxaki
+        run: echo ${{ steps.is_merged }}
+        
       - if: ${{ toJson(github.event.pull_request.merged) }} == 'false'
         run: exit 1
         
