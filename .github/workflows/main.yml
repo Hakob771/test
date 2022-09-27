@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: debug
+        run: echo ${{ toJson(github.event.pull_request.merged) }}
       - if: ${{ toJson(github.event.pull_request.merged) }} == false 
         run: exit 1
         
