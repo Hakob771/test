@@ -15,7 +15,7 @@ jobs:
         uses: 8BitJonny/gh-get-current-pr@2.1.1
         
       - name: Check merge info
-        run: echo ${{ fromJSON(steps.merge_info.outputs) }}
+        run: echo ${{ steps.merge_info.outputs }}
     
 #      - name: checkout
 #        uses: actions/checkout@v3
