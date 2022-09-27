@@ -9,9 +9,10 @@ jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
-    if: ${{ toJson(github.event.pull_request.merged) }} == true
-    
     steps:
+      - if: ${{ toJson(github.event.pull_request.merged) }} == false 
+        run: exit 1
+        
       - name: shtyspes
         run: echo "hello"
 #      - name: checkout
