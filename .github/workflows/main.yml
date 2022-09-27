@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Get current Merge info
-        id: merge_info
-        uses: 8BitJonny/gh-get-current-pr@2.1.1
-        
-      - name: Check merge info
-        run: echo ${{ steps.merge_info.outputs }}
+      - uses: Dovyski/payload-info-action@master
+        with:
+          filter_push: '.merged'
+          filter_pull_request: '.merged'
     
 #      - name: checkout
 #        uses: actions/checkout@v3
