@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: hmarr/debug-action@v2
-        id: payload
+      - id: payload
+        uses: Dovyski/payload-info-action@master
+        with:
+          filter_push: '.'
+          filter_pull_request: '.'
         
       - name: shtyspes
         env: 
