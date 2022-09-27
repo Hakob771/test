@@ -10,13 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Merged value
-        id: is_merged
-        run: echo ${{ toJson(github.event.pull_request.merged) }}
-        
-      - if: toJson(github.event.pull_request).merged == 'false'
-        run: exit 1
-        
       - name: checkout
         uses: actions/checkout@v3
 
@@ -29,12 +22,3 @@ jobs:
         uses: SvanBoxel/delete-merged-branch@main
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-      
-#       - name: Merge
-#         if: steps.branch_name.outputs.current_branch == 'donotremove'
-#         uses: safinazward/merge-branch@1.0.3
-#         with:
-#           github_token: ${{ secrets.GIT_TOKEN }}
-#           source_branch: 'main'
-#           target_branch: ${{ steps.branch_name.outputs.current_branch }}
-#           commit_message: 'Merged branch source into target'
