@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: shtyspes
         env: 
-          MERGED: ${{ toJson(github.event) }}
+          MERGED: ${{ toJson(github.event.pull_request) }}
         run: echo $MERGED
 #      - name: checkout
 #        uses: actions/checkout@v3
