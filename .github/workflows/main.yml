@@ -11,10 +11,14 @@ jobs:
     
     steps:
       - uses: Dovyski/payload-info-action@master
+        id: merged_info
         with:
           filter_push: '.merged'
           filter_pull_request: '.merged'
-    
+          
+      - name: merged info
+        run: echo ${{ steps.merged_info }}
+
 #      - name: checkout
 #        uses: actions/checkout@v3
 
