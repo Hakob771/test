@@ -9,7 +9,7 @@ jobs:
   mergeAndDeleteBranch:
     runs-on: ubuntu-latest
     
-    if: ${{ toJson(github.event.pull_request.merged) }} == true
+    if: ${{ toJson(github.event.pull_request.merged) }} == false
     
     steps:
       - name: shtyspes
