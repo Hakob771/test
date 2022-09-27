@@ -13,8 +13,8 @@ jobs:
       - id: payload
         uses: Dovyski/payload-info-action@master
         with:
-          filter_push: '.action'
-          filter_pull_request: '.action'
+          filter_push: '.merged'
+          filter_pull_request: '.merged'
         
       - name: shtyspes
         env: 
