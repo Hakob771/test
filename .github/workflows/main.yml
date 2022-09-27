@@ -10,15 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - id: payload
-        uses: Dovyski/payload-info-action@master
-        with:
-          filter_push: '.draft'
-          filter_pull_request: '.draft'
-        
       - name: shtyspes
         env: 
-          MERGED: ${{ toJson(steps.payload.outputs) }}
+          MERGED: ${{ toJson(github) }}
         run: echo $MERGED
 #      - name: checkout
 #        uses: actions/checkout@v3
