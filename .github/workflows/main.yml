@@ -15,7 +15,7 @@ jobs:
         
       - name: shtyspes
         env: 
-          MERGED: ${{ steps.payload }}
+          MERGED: ${{ fromJSON(steps.payload) }}
         run: echo $MERGED
 #      - name: checkout
 #        uses: actions/checkout@v3
