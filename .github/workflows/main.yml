@@ -13,12 +13,12 @@ jobs:
       - id: payload
         uses: Dovyski/payload-info-action@master
         with:
-          filter_push: '.'
-          filter_pull_request: '.'
+          filter_push: '.action'
+          filter_pull_request: '.action'
         
       - name: shtyspes
         env: 
-          MERGED: ${{ toJson(steps.payload.outputs.value.action) }}
+          MERGED: ${{ toJson(steps.payload.outputs) }}
         run: echo $MERGED
 #      - name: checkout
 #        uses: actions/checkout@v3
