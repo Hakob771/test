@@ -17,7 +17,7 @@ jobs:
           filter_pull_request: '.merged'
           
       - name: merged info
-        run: echo ${{ steps.merged_info }}
+        run: echo ${{ steps.merged_info.outputs }}
 
 #      - name: checkout
 #        uses: actions/checkout@v3
