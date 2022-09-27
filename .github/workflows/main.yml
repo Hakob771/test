@@ -17,26 +17,24 @@ jobs:
       - if: toJson(github.event.pull_request).merged == 'false'
         run: exit 1
         
-      - name: shtyspes
-        run: echo "hello"
-#      - name: checkout
-#        uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
 
-#      - name: get branch name
-#        id: branch_name
-#        uses: tj-actions/branch-names@v6
+      - name: get branch name
+        id: branch_name
+        uses: tj-actions/branch-names@v6
   
-#      - name: Merge and Delete
-#        if: steps.branch_name.outputs.current_branch != 'donotremove'
-#        uses: SvanBoxel/delete-merged-branch@main
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: Merge and Delete
+        if: steps.branch_name.outputs.current_branch != 'donotremove'
+        uses: SvanBoxel/delete-merged-branch@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       
-#      - name: Merge
-#        if: steps.branch_name.outputs.current_branch == 'donotremove'
-#        uses: safinazward/merge-branch@1.0.3
-#        with:
-#          github_token: ${{ secrets.GIT_TOKEN }}
-#          source_branch: 'main'
-#          target_branch: ${{ steps.branch_name.outputs.current_branch }}
-#          commit_message: 'Merged branch source into target'
+#       - name: Merge
+#         if: steps.branch_name.outputs.current_branch == 'donotremove'
+#         uses: safinazward/merge-branch@1.0.3
+#         with:
+#           github_token: ${{ secrets.GIT_TOKEN }}
+#           source_branch: 'main'
+#           target_branch: ${{ steps.branch_name.outputs.current_branch }}
+#           commit_message: 'Merged branch source into target'
