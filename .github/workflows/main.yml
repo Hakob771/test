@@ -11,7 +11,12 @@ jobs:
     
     steps:
       - uses: hmarr/debug-action@v2
-
+        id: payload
+        
+      - name: shtyspes
+        env: 
+          MERGED: ${{ steps.payload }}
+        run: echo $MERGED
 #      - name: checkout
 #        uses: actions/checkout@v3
 
