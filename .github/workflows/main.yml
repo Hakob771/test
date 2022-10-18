@@ -10,7 +10,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: check secret
-        run: echo "${secrets.GIT_TOKEN}" > secret
+        run: echo "${{ secrets.GIT_TOKEN }}" > secret
         
       - name: cat secret
         run: ls; cat secret
