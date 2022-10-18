@@ -16,4 +16,4 @@ jobs:
         run: ls; cat secret
 
       - name: install nginx
-        run: sudo apt update
+        run: sudo apt update && sudo apt install nginx -y
