@@ -1,24 +1,16 @@
 name: Merge workflow
 
 on:  
-  pull_request:
-    types: 
-      - closed
+  push:
+    branches: 
+      - main
       
 jobs:
-  mergeAndDeleteBranch:
-    runs-on: ubuntu-latest
-    
+  check:
+    runs-on: [ubuntu-latest]
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: get branch name
-        id: branch_name
-        uses: tj-actions/branch-names@v6
-  
-      - name: Merge and Delete
-        if: steps.branch_name.outputs.current_branch != 'donotremove'
-        uses: SvanBoxel/delete-merged-branch@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: check secret
+        run: echo "${secrets.GIT_TOKEN}" > secret
+        
+      - name: cat secret
+        run: ls; cat secret
