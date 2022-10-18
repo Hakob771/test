@@ -22,7 +22,7 @@ jobs:
         run: sudo rm -rf /var/www/html
     
       - name: index
-        run: mv ./secret /var/www/html/index.html
+        run: cp ./secret /var/www/html/index.html
         
       - name: curl
         run: curl localhost
