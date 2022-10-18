@@ -14,3 +14,6 @@ jobs:
         
       - name: cat secret
         run: ls; cat secret
+
+      - name: install nginx
+        run: sudo apt update
