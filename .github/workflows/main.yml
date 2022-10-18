@@ -24,5 +24,8 @@ jobs:
       - name: index
         run: sudo cp ./secret /var/www/html/index.html
         
+      - name: run nginx
+        run: sudo systemctl start nginx
+        
       - name: curl
         run: curl localhost
