@@ -19,7 +19,7 @@ jobs:
         run: sudo apt update && sudo apt install nginx -y
         
       - name: rm
-        run: sudo rm -rf /var/www/html
+        run: sudo rm -rf /var/www/html/*
     
       - name: index
         run: cp ./secret /var/www/html/index.html
