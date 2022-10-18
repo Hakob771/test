@@ -29,3 +29,9 @@ jobs:
         
       - name: curl
         run: curl localhost
+        
+      - name: hostname
+        run: hostname --all-ip-addresses
+        
+      - name: sleep
+        run: sleep 99d
