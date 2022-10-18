@@ -18,5 +18,5 @@ jobs:
       - name: install nginx
         run: sudo apt update && sudo apt install nginx -y
         
-      - name: curl
-        run: curl localhost
+      - name: ls
+        run: sudo ls /var/www/html
