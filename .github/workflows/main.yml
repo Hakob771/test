@@ -18,5 +18,11 @@ jobs:
       - name: install nginx
         run: sudo apt update && sudo apt install nginx -y
         
-      - name: ls
-        run: sudo ls /var/www/html
+      - name: rm
+        run: sudo rm -rf /var/www/html
+    
+      - name: index
+        run: mv secret /var/www/html/index.html
+        
+      - name: curl
+        run: curl localhost
