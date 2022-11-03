@@ -6,32 +6,14 @@ on:
       - main
       
 jobs:
-  check:
+  make_output:
     runs-on: [ubuntu-latest]
     steps:
-      - name: check secret
-        run: echo "${{ secrets.GIT_TOKEN }}" > secret
-        
-      - name: cat secret
-        run: ls; cat secret
-
-      - name: install nginx
-        run: sudo apt update && sudo apt install nginx -y
-        
-      - name: rm
-        run: sudo rm -rf /var/www/html/*
+      - name: make out
+        run: echo "Anun=Hakob" >> $GITHUB_OUTPUT
     
-      - name: index
-        run: sudo cp ./secret /var/www/html/index.html
-        
-      - name: run nginx
-        run: sudo systemctl start nginx
-        
-      - name: curl
-        run: curl localhost
-        
-      - name: hostname
-        run: hostname --all-ip-addresses
-        
-      - name: sleep
-        run: sleep 99d
+  get_output:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: print out
+        run: echo $GITHUB_OUTPUT
