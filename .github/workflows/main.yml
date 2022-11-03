@@ -10,7 +10,7 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: make out
-        run: echo "Anun=Hakob" >> $GITHUB_OUTPUT
+        run: echo "Anun=Hakob" >>$GITHUB_OUTPUT
     
   get_output:
     runs-on: [ubuntu-latest]
