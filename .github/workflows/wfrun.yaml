@@ -6,9 +6,11 @@ on:
     
 jobs:
   my_job:
+    if: github.event.workflow_run.success == 'success'
+  
     runs-on:
       - ubuntu-latest
       
     steps:
       - name: helloworld
-        run: echo ${{ toJson(github.event) }}
+        run: echo hello world
