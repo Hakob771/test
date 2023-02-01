@@ -11,4 +11,4 @@ jobs:
       
     steps:
       - name: helloworld
-        run: echo hello world
+        run: echo ${{ github.event }}
