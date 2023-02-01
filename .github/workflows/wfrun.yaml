@@ -1,0 +1,14 @@
+on:
+  workflow_run:
+    workflows: [Merge workflow]
+  types:
+    - completed
+    
+jobs:
+  my_job:
+    runs-on:
+      - ubuntu-latest
+      
+    steps:
+      - name: helloworld
+        run: echo hello world
