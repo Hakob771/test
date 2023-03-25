@@ -29,7 +29,7 @@ jobs:
         
       - name: Get Latest Prerelease Tag
         uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
+        id: get-latest-tag 
           
       - name: Get rc_version From VERSION
         run: echo "::set-output name=RC_VERSION::$(jq -e -r .rc_version VERSION)"
