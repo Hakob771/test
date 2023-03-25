@@ -14,9 +14,8 @@ jobs:
       
     steps:
       - name: get label
-        run: |
-          echo ${{ github.event.pull_request.labels.*.name }}
+        run: ${{ contains(github.event.pull_request.labels.*.name, 'bug') }}
 
       - name: get labels
         run: |
-          echo ${{ github.event.pull_request.labels }}
+          echo ${{ github.event.pull_request }}
