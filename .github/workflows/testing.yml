@@ -16,3 +16,7 @@ jobs:
       - name: get label
         run: |
           echo ${{ github.event.pull_request.labels.0.name }}
+
+      - name: get labels
+        run: |
+          echo ${{ github.event.pull_request.labels }}
