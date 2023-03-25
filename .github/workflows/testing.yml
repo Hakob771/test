@@ -1,0 +1,18 @@
+name: Create Release on PR Merge
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  get-current-label:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+
+    runs-on:
+      - ubuntu-latest
+      
+    steps:
+      - name: get label
+        run: |
+          echo ${{ github.event.pull_request.labels.0.name }}
