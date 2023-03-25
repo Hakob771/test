@@ -17,5 +17,19 @@ jobs:
         run: ${{ contains(github.event.pull_request.labels.*.name, 'bug') }}
 
       - name: get labels
+        id: hello
         run: |
-          echo ${{ github.event.pull_request }}
+          if [ ${{ github.event.pull_request }} = 'bug' ]
+          then
+            echo "version=bug" >> $GITHUB_OUTPUT
+          elif [ ${{ github.event.pull_request }} = 'documentation' ]
+          then
+            echo "version=documentation" >> $GITHUB_OUTPUT
+          else
+            echo "version=minor" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: print labels
+        run: echo ${{ steps.hello.outputs.version }}
+          
+          
