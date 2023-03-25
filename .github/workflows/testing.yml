@@ -13,16 +13,14 @@ jobs:
       - ubuntu-latest
       
     steps:
-      - name: get label
-        run: ${{ contains(github.event.pull_request.labels.*.name, 'bug') }}
 
       - name: get labels
         id: hello
         run: |
-          if [ ${{ github.event.pull_request }} = 'bug' ]
+          if [ ${{ contains(github.event.pull_request.labels.*.name, 'bug'}} ]
           then
             echo "version=bug" >> $GITHUB_OUTPUT
-          elif [ ${{ github.event.pull_request }} = 'documentation' ]
+          elif [ ${{ contains(github.event.pull_request.labels.*.name, 'documentation'}} ]
           then
             echo "version=documentation" >> $GITHUB_OUTPUT
           else
