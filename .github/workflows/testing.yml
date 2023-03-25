@@ -17,17 +17,18 @@ jobs:
       - name: get labels
         id: hello
         run: |
-          if [ ${{ contains(github.event.pull_request.labels.*.name, 'bug'}} ]
+          if [ ${{ contains(github.event.pull_request.labels.*.name, bug}} ]
           then
             echo "version=bug" >> $GITHUB_OUTPUT
-          elif [ ${{ contains(github.event.pull_request.labels.*.name, 'documentation'}} ]
+          elif [ ${{ contains(github.event.pull_request.labels.*.name, documentation}} ]
           then
             echo "version=documentation" >> $GITHUB_OUTPUT
+          elif [ ${{ contains(github.event.pull_request.labels.*.name, enhancement}} ]
+          then
+            echo "version=enhancement" >> $GITHUB_OUTPUT
           else
-            echo "version=minor" >> $GITHUB_OUTPUT
+            exit 1
           fi
           
       - name: print labels
         run: echo ${{ steps.hello.outputs.version }}
-          
-          
