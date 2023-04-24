@@ -1,5 +1,6 @@
 on:
-  push
+  pull_request:
+    types: [opened, reopened, closed]
 
 jobs:
   auth0-set-application-uris:
@@ -14,5 +15,5 @@ jobs:
           auth0-client-id: "ZCSj7d5zdSErdR8DaOt0WpOhxI5ocsvI"
           auth0-client-secret: "9y6QEmToPACOlusfv8ZVbtFe9oBZ3sg5zsiVftOiGmcRKAYXBYtzVZ66ynyNCcFn"
           auth0-target-client-id: "DXjOmq8cMccrhs5PYPVRAErVuWQ0zTQC"
-          callback-url-template: "https://pr-1.example.com/callback"
-          logout-url-template: "https://pr-1.example.com/"
+          callback-url-template: "https://pr-{{ pull_request.number }}.example.com/callback"
+          logout-url-template: "https://pr-{{ pull_request.number }}.example.com/"
