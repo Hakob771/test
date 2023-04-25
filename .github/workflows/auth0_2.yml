@@ -1,5 +1,7 @@
 on:
-  delete
+  pull_request:
+    types: 
+      - opened
 
 jobs:
   auth0-set-application-uris:
@@ -10,9 +12,9 @@ jobs:
     steps:
       - uses: singingwolfboy/auth0-set-application-uris@v1
         with:
-          auth0-domain: "dev-8dot8lae.us.auth0.com"
-          auth0-client-id: "ZCSj7d5zdSErdR8DaOt0WpOhxI5ocsvI"
-          auth0-client-secret: "9y6QEmToPACOlusfv8ZVbtFe9oBZ3sg5zsiVftOiGmcRKAYXBYtzVZ66ynyNCcFn"
-          auth0-target-client-id: "DXjOmq8cMccrhs5PYPVRAErVuWQ0zTQC"
+          auth0-domain: "dev-snxb30tjqlz2p4hi.us.auth0.com"
+          auth0-client-id: "JmNVshazvXdejBK2Gixwat8HFeCxQti6"
+          auth0-client-secret: "vDRXKuXQbQmTMr5rc7CYrLzVSdRGpTtPQvvWYeD6H8LBWFSx5xtlkNYC1JlTqRzh"
+          auth0-target-client-id: "IXuiIEonXByw1wXWoWkH1o1NnRRCqn4Q"
           callback-url-template: "https://pr-43.example.com/callback"
           logout-url-template: "https://pr-43.example.com/"
