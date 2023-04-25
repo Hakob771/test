@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: mlg87/whitelist-domain-with-auth0-action@v0.0.4
         with:
-          app-base-url: "https://pr-{{ pull_request.number }}.example.com"
+          app-base-url: "https://pr-1111.example.com"
           append-callback-string: 'true'
           auth0-application-id: "DXjOmq8cMccrhs5PYPVRAErVuWQ0zTQC"
           auth0-management-client-id: "ZCSj7d5zdSErdR8DaOt0WpOhxI5ocsvI"
