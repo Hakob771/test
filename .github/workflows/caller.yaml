@@ -10,5 +10,5 @@ jobs:
       - ubuntu-latest
     steps:
       - name: call action2
-        uses: "./.github/workflows/action2.yaml"
+        uses: "./.github/workflows/main"
     
