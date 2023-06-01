@@ -3,4 +3,5 @@ name: setup-env
 runs:
   using: 'composite'
   steps:
-    - run: echo "Hello World Main"
+    - shell: bash
+      run: echo "Hello World Main"
