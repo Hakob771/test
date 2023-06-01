@@ -1,0 +1,8 @@
+name: print hello 2
+
+runs:
+  using: "composite"
+  steps:
+    - name: Hello2
+      run: | 
+        echo Hello2
