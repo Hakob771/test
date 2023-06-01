@@ -3,7 +3,7 @@ name: setup-env
 runs:
   using: 'composite'
   steps:
-    - uses: "./.github/workflows/actions/setup-composite/base/action_1.yaml"
+    - uses: "./.github/workflows/actions/setup-composite/base/action.yaml"
   
     - shell: bash
       run: echo "Hello World Main"
