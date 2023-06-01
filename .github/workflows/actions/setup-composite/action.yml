@@ -3,11 +3,4 @@ name: setup-env
 runs:
   using: 'composite'
   steps:
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-
-    - name: run dependencies
-      shell: bash
-      run: |
-        pip install -r requirements.txt
+    - run: echo "Hello World Main"
