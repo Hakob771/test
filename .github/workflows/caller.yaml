@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+      
+jobs:
+  callerJob:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      - name: call action2
+        uses: "./.github/workflows/action2.yaml"
+    
