@@ -10,5 +10,5 @@ jobs:
       - ubuntu-latest
     steps:
       - name: call action2
-        uses: "./.github/workflows/main"
+        uses: "./.github/template/deploy"
     
