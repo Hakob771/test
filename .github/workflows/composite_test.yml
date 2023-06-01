@@ -17,3 +17,5 @@ jobs:
           ls -la .github
           ls -la .github/workflows
           ls -la .github/workflows/actions
+          ls -la .github/workflows/actions/setup-composite
+          cat .github/workflows/actions/setup-composite/action.yml
