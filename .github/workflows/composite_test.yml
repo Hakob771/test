@@ -9,7 +9,11 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: composite
-        uses: ./.github/actions/setup-composite
+      - name: ls dir
+        run: |
+          ls -la
+          ls -la .github
+          ls -la .github/workflows
+          ls -la .github/workflows/actions
