@@ -1,23 +1,10 @@
 name: Composite Test
 on:
-  pull_request:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: ls dir
-        run: |
-          ls -la
-          ls -la .github
-          ls -la .github/workflows
-          ls -la .github/workflows/actions
-          ls -la .github/workflows/actions/setup-composite
-          cat .github/workflows/actions/setup-composite/action.yml
-
-      - uses: "./.github/workflows/actions/setup-composite"
+      - run: |
+          docker-compose up
