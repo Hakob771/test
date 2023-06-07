@@ -2,11 +2,22 @@ on:
   workflow_dispatch
   
 jobs:
-  test:
-    runs-on:
+  example_matrix:
+    strategy:
+      matrix: 
+        envs: 
+          - smoke
+          - live
+          - dev
+          
+    runs-on: 
       - ubuntu-latest
-    
+      
     steps:
-      - name: print repo name
-        run: | 
-          echo ${{ github.event.repository.name }}
+      - name: touch a file
+        run: |
+          touch ${{ matrix.envs }}
+          
+      - name: list
+        run: |
+          ls
