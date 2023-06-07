@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: print repo name
         run: | 
-          echo ${{ toJSON(github.repository) }}
+          echo ${{ github.event.repository.name }}
