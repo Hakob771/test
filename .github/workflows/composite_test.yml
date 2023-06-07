@@ -2,7 +2,7 @@ name: Composite Test
 on:
   push:
     tags:
-      - '^v\d+\.\d+\.\d+\-.+$'
+      - '^v\d+\.\d+\.\d+-\w+$'
 
 jobs:
   setup:
