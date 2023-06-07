@@ -2,7 +2,7 @@ name: Composite Test
 on:
   push:
     tags:
-      - '1.0.2'
+      - '^\d+\.\d+\.\d+-\w+$'
     
 jobs:
   setup:
