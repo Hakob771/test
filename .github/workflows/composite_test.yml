@@ -1,6 +1,8 @@
 name: Composite Test
 on:
-  create
+  create:
+    tags:
+      - '^\d+\.\d+\.\d+-\w+$'
 
 jobs:
   setup:
