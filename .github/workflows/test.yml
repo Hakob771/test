@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    branches:
+      - main
+      
+jobs:
+  print_sha:
+    runs-on:
+      - ubuntu-latest
+      
+    steps:
+      - name: print
+        run: | 
+          echo ${{ github.sha }}
