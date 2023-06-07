@@ -1,6 +1,6 @@
 name: Composite Test
 on:
-  create:
+  push:
     tags:
       - '^\d+\.\d+\.\d+-\w+$'
 
