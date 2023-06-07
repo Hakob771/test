@@ -1,9 +1,9 @@
 name: Composite Test
 on:
-  push:
+  create:
     tags:
-      - '^\d+\.\d+\.\d+-\w+$'
-
+      - '1.0.2'
+    
 jobs:
   setup:
     runs-on: ubuntu-latest
