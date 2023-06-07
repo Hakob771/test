@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: print repo name
         run: | 
-          echo toYaml(${{ github }})
+          echo ${{ toYaml(github) }}
