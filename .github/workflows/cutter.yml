@@ -11,10 +11,9 @@ on:
         description: "The prerelease name for matching with environment, to deploy."
         value: ${{ jobs.get-tag-prerelease.outputs.prerelease_name }}
 
-
 jobs:
   get-tag-prerelease:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     name: Get Prerelease Name From Tag
     outputs:
       prerelease_name: ${{ steps.prerelease_name.outputs.prerelease_name }}
