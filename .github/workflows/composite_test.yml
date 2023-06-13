@@ -1,11 +1,44 @@
-name: Composite Test
+name: Release Deploy - Pipeline
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: false
+
 on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+-+\b[a-z0-9]+\b'
 
+env:
+  sqa2_username: <username>
+  sqa2_host: <address>
+  uat2_username: <username>
+  uat2_host: <address>
+
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo ${{ github.ref_name }}
+  cut-prerelease:
+    name: Cut prerelease from tag
+    uses: korio-clinical/github-reusable-workflows/.github/workflows/get-tag-prerelease.yml@main
+    with:
+      release_tag: ${{ github.ref_name }}
+
+  compose-deploy:
+    needs: [cut-prerelease]
+    strategy:
+      matrix:
+        environment: ["${{ needs.cut-prerelease.outputs.environment_name }}"]
+        include:
+          - environment: ${{ needs.cut-prerelease.outputs.environment_name }}
+            remote_username: format('{0}_username', ${{ needs.cut-prerelease.outputs.environment_name }})
+            remote_host: format('{0}_host', ${{ needs.cut-prerelease.outputs.environment_name }})
+    name: Docker Compose Deploy
+    uses: korio-clinical/github-reusable-workflows/.github/workflows/cd-compose-deploy.yml@main
+    with:
+      image_tag: ${{ github.sha }}
+      env_image_name: HOST_REACT
+      environment: ${{ matrix.environment }}
+      microservice_name: host-react
+      sub_environment: ${{ matrix.environment }}
+      remote_username: ${{ matrix.remote_username }}
+      remote_host: ${{ matrix.remote_host }}
+    secrets: inherit
