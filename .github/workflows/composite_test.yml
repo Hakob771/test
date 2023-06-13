@@ -12,7 +12,7 @@ on:
 jobs:
   cut-prerelease:
     name: Cut prerelease from tag
-    uses: Hakob771/test/.github/workflows/main/cutter.yml@main
+    uses: Hakob771/test/.github/workflows/cutter.yml@main
     with:
       release_tag: ${{ github.ref_name }}
 
