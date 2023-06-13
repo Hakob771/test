@@ -1,0 +1,29 @@
+name: Get tag's prerelease name
+
+on:
+  workflow_call:
+    inputs:
+      release_tag:
+        required: true
+        type: string
+    outputs:
+      environment_name:
+        description: "The prerelease name for matching with environment, to deploy."
+        value: ${{ jobs.get-tag-prerelease.outputs.prerelease_name }}
+
+
+jobs:
+  get-tag-prerelease:
+    runs-on: self-hosted
+    name: Get Prerelease Name From Tag
+    outputs:
+      prerelease_name: ${{ steps.prerelease_name.outputs.prerelease_name }}
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Cut Prerelease From Tag
+      shell: bash
+      id: prerelease_name
+      run: |
+        echo "prerelease_name=$(echo ${{ inputs.release_tag }} | cut -d '-' -f 2)" >> $GITHUB_OUTPUT
