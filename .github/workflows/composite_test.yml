@@ -15,3 +15,4 @@ jobs:
      - name: print
        run: |
         echo ${{ vars[format('{0}_var', 'my')] }}
+        echo ${{ fromJSON(vars[format('{0}_var', 'my')]) }}
