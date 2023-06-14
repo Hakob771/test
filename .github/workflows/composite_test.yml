@@ -14,6 +14,6 @@ jobs:
     steps:
      - name: print
        run: |
-        echo ${{ secrets[format("{0}_word", "dev")] }}
-        echo ${{ env[format("{0}_word", "dev")] }}
-        echo ${{ vars[format("{0}_word", "dev")] }}
+        echo ${{ secrets[format('{0}_WORD', 'dev')] }}
+        echo ${{ env[format('{0}_word', 'dev')] }}
+        echo ${{ vars[format('{0}_word', 'dev')] }}
