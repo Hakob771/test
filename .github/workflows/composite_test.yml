@@ -5,23 +5,12 @@ concurrency:
   cancel-in-progress: false
 
 on:
-  push:
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+-+\b[a-z0-9]+\b'
+  workflow_dispatch:
 
 jobs:
   cut-prerelease:
-    name: Cut prerelease from tag
-    uses: Hakob771/test/.github/workflows/cutter.yml@main
-    with:
-      release_tag: ${{ github.ref_name }}
-
-  print-result:
-    needs: 
-      - cut-prerelease
-    runs-on:
-      - ubuntu-latest
-      
-    steps:
-      - name: Print from last job
-        run: echo ${{ needs.cut-prerelease.outputs.environment_name }}
+    name: print
+    run: |
+      echo secrets[format("{0}_word", "dev")]
+      echo env[format("{0}_word", "dev")]
+      echo vars[format("{0}_word", "dev")]
