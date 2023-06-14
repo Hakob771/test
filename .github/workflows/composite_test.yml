@@ -9,6 +9,8 @@ on:
 
 jobs:
   cut-prerelease:
+    runs-on: ubuntu-latest
+  
     name: print
     run: |
       echo secrets[format("{0}_word", "dev")]
