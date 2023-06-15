@@ -12,8 +12,6 @@ jobs:
     strategy:
       matrix:
         environments: ${{ fromJSON(vars.VMS) }}
-        remote_username: ${{ fromJSON(vars.REMOTE_USERNAME) }}
-    
     steps:
       - name: "checkout"
         uses: actions/checkout@v2
@@ -28,11 +26,11 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ matrix.environments }}
-          username: ${{ matrix.remote_username }}
+          username: ${{ vars.REMOTE_USERNAME }}
           key: ${{ secrets[format('{0}_KEY', inputs.environment)] }}
           source: "./asd"
-          target: "/home/${{ matrix.remote_username }}/"
+          target: "/home/${{ vars.REMOTE_USERNAME }}/"
           
       - name: "SSH to server"
         run: |
-          ssh ${{ matrix.remote_username }}@${{ matrix.environments }} "date > date.txt"
+          ssh ${{ vars.REMOTE_USERNAME }}@${{ matrix.environments }} "date > date.txt"
