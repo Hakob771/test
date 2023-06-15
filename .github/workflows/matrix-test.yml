@@ -1,0 +1,26 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: string
+        default: dev2
+
+jobs:
+  test:
+    runs-on: 
+      - self-hosted
+    strategy:
+      matrix:
+        environments: ${{ vars.VMS }}
+        remote_username: ${{ vars.REMOTE_USERNAME }}
+    
+    steps:
+      - name: "Install keys"
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets[format('{0}_KEY', inputs.environment)] }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ matrix.environments }} > ~/.ssh/known_hosts
+          
+      - name: "SSH to server"
+        run: |
+          ssh ${{ matrix.remote_username }}@${{ matrix.environments }} "date > date.txt"
