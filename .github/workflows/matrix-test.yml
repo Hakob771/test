@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         environments: ${{ fromJSON(vars.VMS) }}
-        remote_username: ${{ vars.REMOTE_USERNAME }}
+        remote_username: ${{ fromJSON(vars.REMOTE_USERNAME) }}
     
     steps:
       - name: "checkout"
