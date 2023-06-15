@@ -22,14 +22,9 @@ jobs:
           echo "${{ secrets[format('{0}_KEY', inputs.environment)] }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ matrix.environments }} > ~/.ssh/known_hosts
           
-      - name: Copy Compose File
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ matrix.environments }}
-          username: ${{ vars.REMOTE_USERNAME }}
-          key: ${{ secrets[format('{0}_KEY', inputs.environment)] }}
-          source: "./asd"
-          target: "/home/${{ vars.REMOTE_USERNAME }}/"
+      - name: "SCP"
+        run: |
+          scp ./asd ${{ vars.REMOTE_USERNAME }}@${{ matrix.environments }}:/home/${{ vars.REMOTE_USERNAME }}
           
       - name: "SSH to server"
         run: |
