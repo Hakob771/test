@@ -11,15 +11,27 @@ jobs:
       - self-hosted
     strategy:
       matrix:
-        environments: ${{ vars.VMS }}
+        environments: ${{ fromJSON(vars.VMS) }}
         remote_username: ${{ vars.REMOTE_USERNAME }}
     
     steps:
+      - name: "checkout"
+        uses: actions/checkout@v2
+      
       - name: "Install keys"
         run: |
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets[format('{0}_KEY', inputs.environment)] }}" > ~/.ssh/id_rsa
           ssh-keyscan -H ${{ matrix.environments }} > ~/.ssh/known_hosts
+          
+      - name: Copy Compose File
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ matrix.environments }}
+          username: ${{ matrix.remote_username }}
+          key: ${{ secrets[format('{0}_KEY', inputs.environment)] }}
+          source: "./asd"
+          target: "/home/${{ matrix.remote_username }}/"
           
       - name: "SSH to server"
         run: |
