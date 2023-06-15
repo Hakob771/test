@@ -18,14 +18,4 @@ jobs:
       
       - name: "Install keys"
         run: |
-          install -m 600 -D /dev/null ~/.ssh/id_rsa
-          echo "${{ secrets[format('{0}_KEY', inputs.environment)] }}" > ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ matrix.environments }} > ~/.ssh/known_hosts
-          
-      - name: "SCP"
-        run: |
-          scp ./asd ${{ vars.REMOTE_USERNAME }}@${{ matrix.environments }}:/home/${{ vars.REMOTE_USERNAME }}
-          
-      - name: "SSH to server"
-        run: |
-          ssh ${{ vars.REMOTE_USERNAME }}@${{ matrix.environments }} "date > date.txt"
+          echo ${{ github }}
