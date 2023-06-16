@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+  
+jobs:
+  steve_jobs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Print 1
+        run: |
+          echo ${{ vars.PORTS["smoke"] }}
+          
+      - name: Print 2
+        run: |
+          echo ${{ vars.PORTS }}["smoke"]
+          
+      - name: Print 3
+        run: |
+          echo ${{ fromJSON(vars.PORTS["smoke"]) }}
+          
+      - name: Print 4
+        continue-on-error: true
+        run: |
+          echo ${{ fromJSON(vars.PORTS) }}["smoke"]          
