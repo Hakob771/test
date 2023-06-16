@@ -13,5 +13,5 @@ jobs:
       - name: Print 3
         continue-on-error: true
         run: |
-          PORT=$(echo ${{ fromJSON(vars.PORTS) }} | jq -r ${{ inputs.name }} )
+          PORT=$(echo ${{ vars.PORTS }} | jq -r ${{ inputs.name }} )
           echo $PORT
