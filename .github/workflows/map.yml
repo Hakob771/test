@@ -13,4 +13,4 @@ jobs:
       - name: Print 3
         continue-on-error: true
         run: |
-          echo ${{ fromJSON(vars.PORTS) }}.${{ inputs.name }}
+          echo ${{ fromJSON(vars.PORTS).inputs.name }}
