@@ -11,10 +11,12 @@ jobs:
           echo ${{ vars.PORTS["smoke"] }}
           
       - name: Print 2
+        continue-on-error: true
         run: |
           echo ${{ vars.PORTS }}["smoke"]
           
       - name: Print 3
+        continue-on-error: true
         run: |
           echo ${{ fromJSON(vars.PORTS["smoke"]) }}
           
