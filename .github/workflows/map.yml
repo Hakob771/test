@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      name:
+        type: string
+        default: smoke
   
 jobs:
   steve_jobs:
@@ -9,4 +13,4 @@ jobs:
       - name: Print 3
         continue-on-error: true
         run: |
-          echo ${{ fromJSON(vars.PORTS).smoke }}
+          echo ${{ fromJSON(vars.PORTS).${{ inputs.name }} }}
