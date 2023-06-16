@@ -9,9 +9,4 @@ jobs:
       - name: Print 3
         continue-on-error: true
         run: |
-          echo ${{ fromJSON(vars.PORTS["smoke"]) }}
-          
-      - name: Print 4
-        continue-on-error: true
-        run: |
-          echo ${{ fromJSON(vars.PORTS) }}["smoke"]          
+          echo ${{ fromJSON(vars.PORTS).smoke }}
