@@ -1,9 +1,5 @@
 name: Release Deploy - Pipeline
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: false
-
 on:
   push:
     paths: 
@@ -17,4 +13,4 @@ jobs:
     steps:
      - name: print payload
        run: |
-        echo ${{ toJSON(github.event) }}
+        echo ${{ toJSON(github) }}
