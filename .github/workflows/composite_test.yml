@@ -2,15 +2,15 @@ name: Release Deploy - Pipeline
 
 on:
   push:
-    paths: 
-      - nginx/config
-      - menginx/config
-
+  
 jobs:
   cut-prerelease:
     runs-on: ubuntu-latest
     
     steps:
+     - name: Checkout
+       uses: actions/checkout@v1
+       
      - name: print payload
        run: |
         echo $GITHUB_EVENT_PATH
