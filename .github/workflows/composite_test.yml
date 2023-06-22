@@ -5,14 +5,13 @@ concurrency:
   cancel-in-progress: false
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
   cut-prerelease:
     runs-on: ubuntu-latest
     
     steps:
-     - name: print
+     - name: print payload
        run: |
-        echo ${{ vars[format('{0}_var', 'my')] }}
-        echo ${{ fromJSON(vars[format('{0}_var', 'my')]) }}
+        echo ${{ toJSON(github.event) }}
