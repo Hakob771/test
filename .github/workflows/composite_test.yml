@@ -8,6 +8,7 @@ on:
   push:
     paths: 
       - nginx/config
+      - menginx/config
 
 jobs:
   cut-prerelease:
