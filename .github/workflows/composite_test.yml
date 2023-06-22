@@ -6,6 +6,8 @@ concurrency:
 
 on:
   push:
+    paths: 
+      - nginx/config
 
 jobs:
   cut-prerelease:
