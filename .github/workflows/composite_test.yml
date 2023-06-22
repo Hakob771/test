@@ -28,5 +28,5 @@ jobs:
 
       - name: List all changed files
         run: |
-        echo ${{ steps.split.outputs._0 }}
-        echo ${{ steps.split.outputs._1 }}
+          echo ${{ steps.split.outputs._0 }}
+          echo ${{ steps.split.outputs._1 }}
