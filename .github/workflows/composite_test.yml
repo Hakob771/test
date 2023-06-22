@@ -16,6 +16,7 @@ jobs:
 
       - name: Changed Files
         uses: tj-actions/changed-files@v36.4.1
+        id: changed-files
         
       - name: List all changed files
         run: |
