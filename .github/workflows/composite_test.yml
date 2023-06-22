@@ -8,10 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-     - name: Checkout
-       uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
        
-     - name: print payload
-       run: |
-        FILE_NAME=$(jq --raw-output '.commits[0].added[]' "$GITHUB_EVENT_PATH")
-          echo "Changed file name: $FILE_NAME"
+
+      - name: Print changed file name
+        uses: juliangruber/changed-files@v1
+        id: changed
+        with:
+          number: 1
+
+      - name: Output file names
+        run: |
+          echo "Changed file names:"
+          echo "${{ steps.changed.outputs.files }}"
