@@ -13,4 +13,4 @@ jobs:
     steps:
      - name: print payload
        run: |
-        echo ${{ toJSON(github) }}
+        echo $GITHUB_EVENT_PATH
