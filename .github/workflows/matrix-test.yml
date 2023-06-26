@@ -4,7 +4,7 @@ on:
 jobs:
   test:
     runs-on: 
-      - self-hosted
+      - ubuntu-latest
     strategy:
       matrix:
         environments: [dev2, sqa2]
