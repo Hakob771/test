@@ -1,21 +1,17 @@
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        type: string
-        default: dev2
-
+  
 jobs:
   test:
     runs-on: 
       - self-hosted
     strategy:
       matrix:
-        environments: ${{ fromJSON(vars.VMS) }}
-    steps:
-      - name: "checkout"
-        uses: actions/checkout@v2
+        environments: [dev2, sqa2]
+        sub_environments: [smoke, live]
       
-      - name: "Install keys"
+    steps:
+      - name: Print out
         run: |
-          echo ${{ github.event.repository.name }}
+          echo ${{ matrix.environments }}
+          echo ${{ matrix.sub_environments }}
