@@ -11,7 +11,7 @@ jobs:
         environments: [dev2, sqa2]
         include:
           - environment: ${{ matrix.environments }}
-            hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
+            hosts: ${{ vars[format('HOST_{0}', matrix.environment)] }}
       
     steps:
       - name: Print out
