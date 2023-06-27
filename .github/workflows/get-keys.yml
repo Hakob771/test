@@ -7,6 +7,7 @@ jobs:
       - ubuntu-latest
       
     steps:
-    - name: Read JSON to file
+    - name: Read Key
+      id: keys
       run: |
-        echo -e '${{ vars.ENVS }}' | jq keys[]
+        echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")'
