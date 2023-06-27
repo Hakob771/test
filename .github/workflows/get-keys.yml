@@ -9,5 +9,4 @@ jobs:
     steps:
     - name: Read JSON to file
       run: |
-        echo "${{ vars.ENVS }}" > file.json
-        jq keys[] file.json
+        echo -e '${{ vars.ENVS }}' | jq keys[]
