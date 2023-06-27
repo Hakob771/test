@@ -8,7 +8,7 @@ jobs:
       - ubuntu-latest
     strategy:
       matrix:
-        environments: [dev2, sqa2]
+        environments: ['dev2', 'sqa2']
         include:
           - environments: ${{ matrix.environments }}
             hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
