@@ -5,30 +5,9 @@ jobs:
   get_keys_in_list:
     runs-on:
       - ubuntu-latest
-      
-    outputs:
-      keys: ${{ steps.keys.outputs.keys }}
     
     steps:
     - name: Read Key
       id: keys
       run: |
-        echo "keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')" >> $GITHUB_OUTPUT
-        
-  print:
-    needs:
-      - get_keys_in_list
-    runs-on:
-      - ubuntu-latest
-    
-    strategy:
-      matrix:
-        environment: ${{ needs.get_keys_in_list.outputs.keys }}
-        
-    env:
-      remote_env: ${{ matrix.environment }}
-    
-    steps:
-      - name: Print
-        run: |
-          echo ${{ env.remote_env }}
+        keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
