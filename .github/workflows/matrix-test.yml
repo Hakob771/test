@@ -9,11 +9,11 @@ jobs:
     strategy:
       matrix:
         environments: ['dev2', 'sqa2']
-        include:
-          - environments: ${{ matrix.environments }}
-            hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
+#         include:
+#           - environments: ${{ matrix.environments }}
+#             hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
       
     steps:
       - name: Print out
         run: |
-          echo barev
+          echo ${{ matrix.envrionments }}
