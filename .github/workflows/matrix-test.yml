@@ -1,5 +1,6 @@
 on:
   workflow_dispatch:
+  push:
   
 jobs:
   test:
@@ -8,10 +9,11 @@ jobs:
     strategy:
       matrix:
         environments: [dev2, sqa2]
-        sub_environments: [smoke, live]
+        include:
+          - environment: ${{ matrix.environments }}
+            hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
       
     steps:
       - name: Print out
         run: |
-          echo ${{ matrix.environments }}
-          echo ${{ matrix.sub_environments }}
+          echo barev
