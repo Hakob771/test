@@ -24,7 +24,7 @@ jobs:
       
     strategy:
       matrix:
-        environments: ${{ needs.get_keys_in_list.outputs.environments }}
+        environments: ${{ fromJSON(needs.get_keys_in_list.outputs.environments) }}
         
     env:
       environment: ${{ matrix.environments }}
