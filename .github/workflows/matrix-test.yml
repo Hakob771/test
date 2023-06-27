@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         environments: ["dev2", "sqa2"]
+        hosts: ${{ vars[format('HOST_{0}', ["dev2", "sqa2"])] }}
 #         include:
 #           - environments: ${{ matrix.environments }}
 #             hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
@@ -16,4 +17,4 @@ jobs:
     steps:
       - name: Print out
         run: |
-          echo "${{ toJSON(job) }}"
+          echo ""
