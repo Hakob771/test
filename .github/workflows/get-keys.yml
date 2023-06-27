@@ -6,11 +6,14 @@ jobs:
     runs-on:
       - ubuntu-latest
       
+    outputs:
+      keys: ${{ steps.keys.outputs.keys
+    
     steps:
     - name: Read Key
       id: keys
       run: |
-        echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")'
+        echo "keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')" >> $GITHUB_OUTPUT
         
   print:
     needs:
@@ -20,7 +23,7 @@ jobs:
     
     strategy:
       matrix:
-        environment: ${{ needs.get_keys_in_list }}
+        environment: ${{ needs.get_keys_in_list.outputs.keys }}
         
     env:
       remote_env: ${{ matrix.environment }}
