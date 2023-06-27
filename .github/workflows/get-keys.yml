@@ -14,4 +14,4 @@ jobs:
       id: keys
       run: |
         keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
-        echo "envs=$keys" >> $GITHUB_OUTPUT
+        echo "envs=${{ fromJson($keys) }}" >> $GITHUB_OUTPUT
