@@ -3,7 +3,7 @@ on:
 
 jobs:
   get_keys_in_list:
-    runs:
+    runs-on:
       - ubuntu-latest
       
     steps:
