@@ -7,13 +7,7 @@ jobs:
       - ubuntu-latest
       
     steps:
-    - name: Read JSON organizational variable
+    - name: Read JSON to file
       run: |
-        json="${{ vars.ENVS }}"
-        echo "$json" # For verification purposes
-
-    - name: Use jq on JSON organizational variable
-      run: |
-        json="${{ vars.ENVS }}"
-        keys=$(echo "$json" | jq 'keys[]')
-        echo "$keys" # For verification purposes
+        echo ${{ vars.ENVS }} > file.json
+        jq keys[] file.json
