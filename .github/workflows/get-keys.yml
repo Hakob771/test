@@ -13,4 +13,5 @@ jobs:
     - name: Read Key
       id: keys
       run: |
-        echo "envs=${{ fromJSON($(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')) }}"
+        keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
+        echo $keys
