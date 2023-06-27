@@ -14,4 +14,4 @@ jobs:
       id: keys
       run: |
         keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
-        echo $keys
+        echo 'envs="$keys"'
