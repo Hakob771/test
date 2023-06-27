@@ -6,9 +6,12 @@ jobs:
     runs-on:
       - ubuntu-latest
     
+    outputs:
+      environments: ${{ steps.keys.outputs.envs }}
+    
     steps:
     - name: Read Key
       id: keys
       run: |
         keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
-        echo $keys
+        echo "envs=$keys" >> $GITHUB_OUTPUT
