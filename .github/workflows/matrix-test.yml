@@ -3,18 +3,32 @@ on:
   push:
   
 jobs:
-  test:
-    runs-on: 
+  job1:
+    runs-on:
       - ubuntu-latest
-    strategy:
-      matrix:
-        environments: ["dev2", "sqa2"]
-        hosts: ${{ vars[format('HOST_{0}', ["dev2", "sqa2"])] }}
-#         include:
-#           - environments: ${{ matrix.environments }}
-#             hosts: ${{ vars[format('HOST_{0}', matrix.environments)] }}
+      
+    outputs:
+      environments: "${{ steps.get-env-names.outputs.envs }}"
       
     steps:
-      - name: Print out
+      - name: 'Get environments'
+        id: get-env-names
         run: |
-          echo ""
+          keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
+          echo """envs="$keys"""" >> $GITHUB_OUTPUT
+          
+  job2:
+    needs:
+      - job1
+      
+    runs-on:
+      - ubuntu-latest
+    
+    strategy:
+      matrix:
+        environments: ${{ needs.job1.outputs.environments }}
+        
+    steps:
+      - name: print
+        run: |
+          echo ${{ matrix.environments }}
