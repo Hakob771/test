@@ -16,4 +16,4 @@ jobs:
     steps:
       - name: Print out
         run: |
-          echo "toJSON(github)"
+          echo "${{ toJSON(github) }}"
