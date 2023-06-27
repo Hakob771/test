@@ -16,4 +16,4 @@ jobs:
     steps:
       - name: Print out
         run: |
-          echo ${{ matrix.envrionments }}
+          echo " val: ${{ matrix.envrionments }}"
