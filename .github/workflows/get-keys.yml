@@ -15,3 +15,21 @@ jobs:
       run: |
         keys=$(echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")')
         echo 'envs="$keys"' >> $GITHUB_OUTPUT
+
+  print:
+    needs:
+      - get_keys_in_list
+    runs-on: 
+      - ubuntu-latest
+      
+    strategy:
+      matrix:
+        environments: ${{ needs.get_keys_in_list.outputs.environments }}
+        
+    env:
+      environment: ${{ matrix.environments }}
+      
+    steps:
+      - name: printout
+        run: |
+          echo ${{ env.environment }} 
