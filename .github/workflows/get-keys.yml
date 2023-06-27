@@ -9,5 +9,5 @@ jobs:
     steps:
     - name: Read JSON to file
       run: |
-        echo ${{ toJSON(vars.ENVS) }} > file.json
+        echo "${{ vars.ENVS }}" > file.json
         jq keys[] file.json
