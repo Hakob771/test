@@ -9,4 +9,4 @@ jobs:
     steps:
       - name: Get in list
         run: |
-          echo "${{ vars.ENVS }}" | jq keys[]
+          echo ${{ toJSON(vars.ENVS) }} | jq keys[]
