@@ -7,6 +7,13 @@ jobs:
       - ubuntu-latest
       
     steps:
-      - name: Get in list
-        run: |
-          echo ${{ fromJSON(vars.ENVS) }} | jq keys[]
+    - name: Read JSON organizational variable
+      run: |
+        json="${{ vars.ENVS }}"
+        echo "$json" # For verification purposes
+
+    - name: Use jq on JSON organizational variable
+      run: |
+        json="${{ vars.ENVS }}"
+        keys=$(echo "$json" | jq 'keys[]')
+        echo "$keys" # For verification purposes
