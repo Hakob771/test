@@ -11,3 +11,21 @@ jobs:
       id: keys
       run: |
         echo -e '${{ vars.ENVS }}' | jq 'keys | map(. + "")'
+        
+  print:
+    needs:
+      - get_keys_in_list
+    runs-on:
+      - ubuntu-latest
+    
+    strategy:
+      matrix:
+        environment: ${{ needs.get_keys_in_list }}
+        
+    env:
+      remote_env: ${{ matrix.environment }}
+    
+    steps:
+      - name: Print
+        run: |
+          echo ${{ env.remote_env }}
