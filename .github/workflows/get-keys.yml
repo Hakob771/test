@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  get_keys_in_list:
+    runs:
+      - ubuntu-latest
+      
+    steps:
+      - name: Get in list
+        run: |
+          jq keys[] ${{ vars.ENVS }}
