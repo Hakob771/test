@@ -7,7 +7,7 @@ jobs:
       - ubuntu-latest
       
     outputs:
-      keys: ${{ steps.keys.outputs.keys
+      keys: ${{ steps.keys.outputs.keys }}
     
     steps:
     - name: Read Key
