@@ -26,7 +26,7 @@ jobs:
     
     strategy:
       matrix:
-        environments: ${{ needs.job1.outputs.environments }}
+        environments: ${{ fromJSON(needs.job1.outputs.environments) }}
         
     steps:
       - name: print
