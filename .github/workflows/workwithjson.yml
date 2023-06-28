@@ -6,6 +6,10 @@ jobs:
     runs-on:
       - ubuntu-latest
 
+    strategy:
+      matrix:
+        subenvs: ${{ fromJSON(vars.ENVS).dev2 }}
+
     steps:
       - name: 'print'
         run: |
