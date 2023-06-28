@@ -2,7 +2,7 @@ on:
   push:
 
 env:
-  my_var: "hello"
+  my_var: "haylo"
 
 jobs:
   job1:
