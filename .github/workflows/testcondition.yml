@@ -19,5 +19,9 @@ jobs:
           then
             echo "node"
           else
-            exit "No service could be found from name."
+            echo "Operation canceled: no app type found by name."; exit 125
           fi
+
+      - name: print github payload
+        run: |
+          echo ${{ toJSON(github) }}
