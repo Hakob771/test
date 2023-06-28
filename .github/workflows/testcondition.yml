@@ -19,5 +19,5 @@ jobs:
           then
             echo "node"
           else
-            echo "nothing"
+            exit 1
           fi
