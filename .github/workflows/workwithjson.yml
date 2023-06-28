@@ -6,11 +6,10 @@ jobs:
     runs-on:
       - ubuntu-latest
 
-    strategy:
-      matrix:
-        subenvs: ${{ fromJSON(vars.ENVS).dev2 }}
-
     steps:
       - name: 'print'
         run: |
-          echo ${{ vars.ENVS.dev2 }}
+          from i in ${{ fromJSON(vars.ENVS).dev2 }}
+          do
+            echo $i
+          done
