@@ -2,7 +2,7 @@ on:
   push:
 
 env:
-  my_var: "audit-trail-node-2"
+  my_var: "audit-trail-2"
 
 jobs:
   job1:
