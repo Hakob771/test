@@ -2,7 +2,7 @@ on:
   push:
 
 env:
-  my_var: "haylo"
+  my_var: "host-react-2"
 
 jobs:
   job1:
@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: bash condition check
         run: |
-          if [[ ${{ contains(env.my_var, 'hello') }} ]]
+          if [[ "${{ env.my_var }}" == *"react"* ]]
           then
-            echo "hello"
-          elif [[ ${{ contains(env.my_var, 'haylo') }} ]]
+            echo "react"
+          elif [[ "${{ env.my_var }}" == *"node"* ]]
           then
-            echo "haylo"
+            echo "node"
           else
             echo "nothing"
           fi
