@@ -1,15 +1,22 @@
 on:
+  workflow_dispatch:
+    inputs:
+      env:
+        type: string
+        default: dev2
+        required: false
   push:
-
+  
 jobs:
   job1:
     runs-on:
       - ubuntu-latest
 
+    strategy:
+      matrix:
+        subenvs: ${{ fromJSON(vars.ENVS)[inputs.env] }}
+
     steps:
       - name: 'print'
         run: |
-          from i in ${{ fromJSON(vars.ENVS).dev2 }}
-          do
-            echo $i
-          done
+          echo hello
