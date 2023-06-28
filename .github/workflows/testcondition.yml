@@ -2,7 +2,7 @@ on:
   push:
 
 env:
-  my_var: "host-react-2"
+  my_var: "audit-trail-node-2"
 
 jobs:
   job1:
