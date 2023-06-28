@@ -24,4 +24,4 @@ jobs:
 
       - name: print github payload
         run: |
-          echo ${{ toJSON(github) }}
+          echo ${{ github.event.repository.name }}
