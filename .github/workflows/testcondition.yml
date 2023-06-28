@@ -1,0 +1,23 @@
+on:
+  push:
+
+env:
+  my_var: "hello"
+
+jobs:
+  job1:
+    runs-on:
+      - ubuntu-latest
+    
+    steps:
+      - name: bash condition check
+        run: |
+          if [[ ${{ contains(env.my_var, 'hello') }} ]]
+          then
+            echo "hello"
+          elif [[ ${{ contains(env.my_var, 'haylo') }} ]]
+          then
+            echo "haylo"
+          else
+            echo "nothing"
+          fi
