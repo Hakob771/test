@@ -19,3 +19,7 @@ jobs:
       - name: print
         run:
           echo ${{ inputs.environment }}
+
+      - name: print payload
+        run:
+          echo ${{ fromJSON(github) }}
