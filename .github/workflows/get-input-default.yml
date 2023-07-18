@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options:
+          - dev
+          - sqa
+        required: false
+        default: dev
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run:
+          echo ${{ inputs.environment }}
