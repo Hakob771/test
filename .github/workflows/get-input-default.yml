@@ -10,7 +10,7 @@ on:
           - dev
           - sqa
         required: false
-        default: dev
+        default: julnar
 
 jobs:
   job1:
