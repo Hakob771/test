@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        default: latitude
+  
+jobs:
+  job1:
+    runs-on:
+      - ${{ inputs.environment }}
+      
+    steps:
+      - name: print
+        run: | 
+          echo ${{ inputs.environment }}
