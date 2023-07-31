@@ -1,5 +1,5 @@
 on:
-  workflow_dispatch:
+  pull_request:
   
 jobs:
   job1:
@@ -12,11 +12,27 @@ jobs:
         env:
           event_num: ${{ github.event.number }}
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const {event_num} = process.env
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `${event_num}.`
-            })
+            const { Octokit } = require('@octokit/core');
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+      - name: 'Setup Node'
+        uses: actions/setup-node@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { Octokit } = require('@octokit/core');
+            const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+            const prNumber = process.env.GITHUB_REF.split('/').pop();
+            const owner = process.env.GITHUB_REPOSITORY.split('/')[0];
+            const repo = process.env.GITHUB_REPOSITORY.split('/')[1];
+
+            const comment = 'Hello! This is a comment added by a GitHub Actions workflow.';
+
+            octokit.request('POST /repos/:owner/:repo/issues/:issue_number/comments', {
+              owner,
+              repo,
+              issue_number: prNumber,
+              body: comment,
+            });
