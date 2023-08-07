@@ -12,5 +12,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TEAM_NAME="my-team"
-          TEAM_MEMBERS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/{org}/teams/$TEAM_NAME/members")
+          TEAM_MEMBERS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams/$TEAM_NAME/members")
           echo "Team Members: $TEAM_MEMBERS"
