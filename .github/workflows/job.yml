@@ -8,9 +8,9 @@ jobs:
 
     steps:
       - name: Check Team Members
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TEAM_NAME="my-team"
-          TEAM_MEMBERS=$(curl -L -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams/devops/members")
-          echo "Team Members: $TEAM_MEMBERS"
+          curl -L \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/orgs/Hakob771/teams/devops/members
