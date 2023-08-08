@@ -12,10 +12,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TEAM_NAME="devops"
-          TEAM_ID=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams" | jq -r '.[] | select(.name == "'$TEAM_NAME'") | .id')
-          if [ -z "$TEAM_ID" ]; then
-            echo "Team not found!"
-            exit 1
-          fi
-          TEAM_MEMBERS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/teams/$TEAM_ID/members" | jq -r '.[] | .login')
-          echo "Team Members: $TEAM_MEMBERS"
+          TEAM_ID=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams" | jq -r '.[]')
