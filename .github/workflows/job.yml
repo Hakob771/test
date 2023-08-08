@@ -11,5 +11,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TEAM_NAME="devops"
-          TEAM_ID=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams" | jq -r '.[]')
+          curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams" | jq -r '.[]'
