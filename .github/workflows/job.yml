@@ -6,7 +6,7 @@ jobs:
     runs-on:
       - ubuntu-latest
 
-    environment: test
+    environment: arvita+karapet=love
     
     steps:
       - name: Hello World
