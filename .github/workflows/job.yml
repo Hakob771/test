@@ -21,3 +21,7 @@ jobs:
       - name: Print whether member exists
         run: |
           echo "Does member exists: ${{ steps.check-member.outputs.exists-in-team }}"
+
+      - name: esim
+        run: |
+          ls file
