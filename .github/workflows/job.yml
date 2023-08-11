@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Check member exists in GitHub Team
         uses: bryantson/check-member-exists-in-team-actions@1.0
+        id: check-member
         with:
           team_slug: devops
           org_slug: Hakob771
