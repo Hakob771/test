@@ -6,9 +6,9 @@ jobs:
     runs-on:
       - ubuntu-latest
 
+    environment: test
+    
     steps:
-      - name: Check Team Members
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Hello World
         run: |
-          curl -s -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/orgs/Hakob771/teams" | jq -r '.[]'
+          echo "Hello World"
