@@ -1,7 +1,7 @@
 name: 'Status Check'
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   job1:
