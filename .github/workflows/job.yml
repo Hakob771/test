@@ -9,14 +9,8 @@ jobs:
     steps:
       - name: Hello World
         run: |
-          EXIST_TEAM=$(curl -s -w "%{http_code}\n" -o /dev/null \
+          curl -s -w "%{http_code}\n" -o /dev/null \
           -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer $GH_TOKEN" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/orgs/"$Hakob771"/teams/"$devops"/memberships/"$hakmkoyan")
-  
-          if [[ "$EXIST_TEAM" -eq 200 ]]; then
-            echo "exists-in-team=true" 
-          else
-            echo "exists-in-team=false"
-          fi
+          https://api.github.com/orgs/"$Hakob771"/teams/"$devops"/memberships/"$hakmkoyan"
