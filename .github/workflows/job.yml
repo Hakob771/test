@@ -20,11 +20,6 @@ jobs:
       - ubuntu-latest
     environment: test
     
-    steps:
-      - name: Wait
-        run: | 
-          echo wait
-
   job3:
     needs:
       - job2
