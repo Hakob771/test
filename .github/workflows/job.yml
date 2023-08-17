@@ -11,6 +11,7 @@ jobs:
     environment: 'test'
 
     steps:
-      - name: Print hello
-        run: | 
-          echo ${{ toJSON(github) }}
+      - uses: tspascoal/get-user-teams-membership@v2
+        with:
+          username: ${{ github.actor }}
+          GITHUB_TOKEN: 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
