@@ -8,10 +8,8 @@ jobs:
     runs-on:
       - ubuntu-latest
 
-    environment: 'test'
-
     steps:
       - uses: tspascoal/get-user-teams-membership@v2
         with:
           username: ${{ github.actor }}
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: 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
