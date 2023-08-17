@@ -1,7 +1,7 @@
-name: 'Status Check'
+name: 'Nested'
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   job1:
@@ -11,5 +11,4 @@ jobs:
     steps:
       - uses: tspascoal/get-user-teams-membership@v2
         with:
-          username: ${{ github.actor }}
-          GITHUB_TOKEN: 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
+          echo: ${{ toJSON(github) }}
