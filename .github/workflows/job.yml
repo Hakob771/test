@@ -10,7 +10,9 @@ jobs:
     runs-on:
       - ubuntu-latest
 
+    environment: 'test'
+
     steps:
       - name: Print hello
         run: | 
-          echo ${{ github.actor }}
+          echo ${{ fromJSON(github) }}
