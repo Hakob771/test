@@ -9,6 +9,6 @@ jobs:
       - ubuntu-latest
 
     steps:
-      - uses: tspascoal/get-user-teams-membership@v2
-        with:
+      - name: 'Print payload'
+        run: |
           echo: ${{ toJSON(github) }}
