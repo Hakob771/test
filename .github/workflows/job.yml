@@ -11,22 +11,4 @@ jobs:
     steps:
       - name: Print hello
         run: | 
-          echo hello
-
-  job2:
-    needs:
-      - job1
-    runs-on:
-      - ubuntu-latest
-    environment: test
-    
-  job3:
-    needs:
-      - job2
-    runs-on:
-      - ubuntu-latest
-
-    steps:
-      - name: Continue
-        run: |
-          echo continue
+          echo ${{ github.actor }}
