@@ -1,7 +1,9 @@
 name: 'Status Check'
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - 'v111'
 
 jobs:
   job1:
