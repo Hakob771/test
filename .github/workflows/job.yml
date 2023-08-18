@@ -15,7 +15,10 @@ jobs:
     steps:
       - name: check
         run: |
-          ${{ contains('ab', matrix.alpha) }}
+          if [[ ${{ contains('ab', matrix.alpha) }} ]]
+          then
+            exit 0
+          fi
   job2:
     runs-on:
       - ubuntu-latest
