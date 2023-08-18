@@ -14,7 +14,7 @@ jobs:
           tmp=false
           for team in (a b c)
           do
-            if [[ ${{ contains('hello', matrix.alpha) }} ]]
+            if [[ ${{ contains('a', matrix.alpha) }} ]]
             then
               tmp=true
             fi
