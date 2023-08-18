@@ -16,10 +16,10 @@ jobs:
           do
             if [[ ${{ contains('a', matrix.alpha) }} ]]
             then
-              tmp=true
+              $tmp=true
             fi
           done
-          if [[ tmp == true ]]
+          if [[ $tmp == true ]]
           then
             exit 0
           else
