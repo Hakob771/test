@@ -1,7 +1,7 @@
 name: 'Nested'
 
 on:
-  workflow_call:
+  push:
 
 jobs:
   job1:
