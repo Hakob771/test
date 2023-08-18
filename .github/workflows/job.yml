@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: check
         run: |
-          for team in `jq '.stage[]' ${{ vars.TEAMS }}`
+          for team in ${{ fromJSON(vars.TEAMS)[stage] }}
           do
             echo $team
           done
