@@ -8,10 +8,19 @@ jobs:
     runs-on:
       - ubuntu-latest
 
+    strategy:
+      matrix: 
+        alpha: ["a", "b", "c"]
+
     steps:
-      - name: 'Checkout Repo'
-        uses: actions/checkout@v3
-    
-      - name: 'Print payload'
+      - name: check
         run: |
-          echo: ${{ toJSON(github.event.repository.name) }}
+          ${{ contains(matrix.alpha, "good bye") }}
+  job2:
+    runs-on:
+      - ubuntu-latest
+
+    steps:
+      - name: print hello world
+        run: |
+          echo hello world
