@@ -15,10 +15,12 @@ jobs:
     steps:
       - name: check
         run: |
-          ${{ contains(matrix.alpha, "good bye") }}
+          ${{ contains('good bye', matrix.alpha) }}
   job2:
     runs-on:
       - ubuntu-latest
+    needs:
+      - job1
 
     steps:
       - name: print hello world
