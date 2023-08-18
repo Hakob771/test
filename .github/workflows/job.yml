@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: check
         run: |
-          for team in `jq -r '.stage[]' ${{ formatJSON(vars.TEAMS) }}`
+          for team in `jq -r '.stage[]' ${{ fromJSON(vars.TEAMS) }}`
           do
             echo $team
           done
