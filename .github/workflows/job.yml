@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: check
         run: |
-          if [[ ${{ contains('ab', matrix.alpha) }} ]]
+          if [[ ${{ contains('hello', matrix.alpha) }} ]]
           then
             exit 0
           fi
