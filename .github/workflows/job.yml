@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: check
         run: |
-          ${{ contains('abc', matrix.alpha) }}
+          ${{ contains('ab', matrix.alpha) }}
   job2:
     runs-on:
       - ubuntu-latest
