@@ -1,7 +1,7 @@
 name: 'Nested'
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   job1:
@@ -11,7 +11,4 @@ jobs:
     steps:
       - name: check
         run: |
-          for team in ${{ fromJSON(vars.TEAMS)[stage] }}
-          do
-            echo $team
-          done
+          git fetch --tags && git describe --tags $(git rev-list --tags --max-count=1)
