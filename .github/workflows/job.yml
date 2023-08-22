@@ -2,6 +2,8 @@ name: 'Nested'
 
 on:
   release:
+    types: 
+      - released
 
 jobs:
   job1:
