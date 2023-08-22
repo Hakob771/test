@@ -3,7 +3,7 @@ name: 'Nested'
 on:
   release:
     types: 
-      - prereleased
+      - released
 
 jobs:
   job1:
