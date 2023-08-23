@@ -17,7 +17,7 @@ jobs:
       - name: 'Manual Approval'
         uses: trstringer/manual-approval@v1
         with:
-            secret: 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
+            secret: "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"
             approvers: 'Company Leads'
             minimum-approvals: 1
             issue-title: "Deploying ${{ github.event.release.tag_name }} to prod."
