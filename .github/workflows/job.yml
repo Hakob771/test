@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: Checkout Repo
         run: |
-          echo ${{ toJSON(github) }}
+          echo ${{ toJSON(github.event.tag_name) }}
