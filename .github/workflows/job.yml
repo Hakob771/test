@@ -1,28 +1,22 @@
-name: 'Nested'
-
-permissions:
-  issues: write
-
+name: main
 on:
-  release:
-    types: 
-      - released
+  workflow_dispatch:
 
 jobs:
-  job1:
-    runs-on:
-      - ubuntu-latest
-
+  build:
+    name: build
+    runs-on: ubuntu-latest
     steps:
-      - name: 'Manual Approval'
-        uses: trstringer/manual-approval@v1
+      - name: Build
+        run: echo building
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: trstringer/manual-approval@v1
         with:
-            secret: "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"
-            approvers: 'devops'
-            minimum-approvals: 1
-            issue-title: "Deploying ${{ github.event.release.tag_name }} to prod."
-            issue-body: "Please approve or deny the deployment of version ${{ github.event.release.tag_name }}."
-    
-      - name: Checkout Repo
-        run: |
-          echo ${{ github.event.release.tag_name }}
+          secret: ${{ github.TOKEN }}
+          approvers: hakmkoyan
+      - name: Deploy to production
+        run: echo deploying
