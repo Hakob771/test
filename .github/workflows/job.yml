@@ -12,4 +12,5 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        run: |
+          echo ${{ toJSON(github) }}
