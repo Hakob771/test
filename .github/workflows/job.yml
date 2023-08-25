@@ -15,6 +15,9 @@ jobs:
         id: exit
         run: |
           echo "val=${{ matrix.tmp }}" >> $GITHUB_OUTPUT
+      - name: 'Print step up'
+        run: |
+          echo ${{ steps.exit.outputs.val }}
 
   continue:
     name: 'Continue'
