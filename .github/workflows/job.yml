@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: 'Exit'
         run: |
-          sleep 10
+          sleep 30
           exit ${{ matrix.tmp }}
 
   continue:
