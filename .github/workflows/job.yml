@@ -24,4 +24,4 @@ jobs:
     steps:
       - name: 'Continue'
         run: | 
-          echo ${{ needs.exit.outputs.output }}
+          echo ${{ toJSON(needs.exit) }}
