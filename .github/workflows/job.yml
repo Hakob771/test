@@ -24,9 +24,6 @@ jobs:
   continue:
     name: Continue
     runs-on: ubuntu-latest
-    needs:
-      - exit
-    if: ${{ needs.exit.outputs.exit-code == '0' }}
     steps:
       - name: 'Continue'
         run: echo "Continue"
