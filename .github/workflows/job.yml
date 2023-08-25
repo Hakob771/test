@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - exit
+    if: ${{ needs.exit.result == 'success' }}
     steps:
       - name: 'Continue'
         run: |
