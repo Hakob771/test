@@ -1,22 +1,22 @@
-name: main
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
-  build:
-    name: build
+  exit:
+    name: exit
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tmp: [1 1 0 1]
+    steps:
+      - name: 'Exit'
+        run: |
+          exit ${{ matrix.tmp }}
+
+  continue:
+    name: 'Continue'
     runs-on: ubuntu-latest
     steps:
-      - name: Build
-        run: echo building
-  deploy:
-    name: deploy
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: devops
-      - name: Deploy to production
-        run: echo deploying
+      - name: 'Continue'
+        run: |
+          echo continue
