@@ -5,22 +5,23 @@ jobs:
   exit:
     name: exit
     runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.exit.output.val }}
     strategy:
       matrix:
-        tmp: [1, 1, 0, 1]
+        tmp: [true, false, TRUE, false]
     steps:
       - name: 'Exit'
+        id: exit
         run: |
-          sleep 30
-          exit ${{ matrix.tmp }}
+          echo "val=${{ matrix.tmp }}" >> $GITHUB_OUTPUT
 
   continue:
     name: 'Continue'
     runs-on: ubuntu-latest
     needs:
       - exit
-    if: ${{ needs.exit.result == 'success' }}
     steps:
       - name: 'Continue'
-        run: |
-          echo continue
+        run: | 
+          echo ${{ needs.exit.outputs.output }}
