@@ -1,30 +1,32 @@
 on:
   push:
+    branches:
+      - main
 
 jobs:
   exit:
-    name: exit
+    name: Exit
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.exit.output.val }}
     strategy:
       matrix:
-        tmp: [true, false, TRUE, false]
+        tmp: [1, 1, 0, 1]
+    outputs:
+      exit-code: ${{ steps.set_exit_code.outputs.exit-code }}
     steps:
+      - name: Set Exit Code
+        id: set_exit_code
+        run: |
+          sleep 30
+          echo "::set-output name=exit-code::${{ matrix.tmp }}"
       - name: 'Exit'
-        id: exit
-        run: |
-          echo "val=${{ matrix.tmp }}" >> $GITHUB_OUTPUT
-      - name: 'Print step up'
-        run: |
-          echo ${{ steps.exit.outputs.val }}
+        run: exit ${{ matrix.tmp }}
 
   continue:
-    name: 'Continue'
+    name: Continue
     runs-on: ubuntu-latest
     needs:
       - exit
+    if: ${{ needs.exit.outputs.exit-code == '0' }}
     steps:
       - name: 'Continue'
-        run: | 
-          echo ${{ toJSON(needs.exit) }}
+        run: echo "Continue"
