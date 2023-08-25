@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        tmp: [1 1 0 1]
+        tmp: [1, 1, 0, 1]
     steps:
       - name: 'Exit'
         run: |
