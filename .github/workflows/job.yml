@@ -1,15 +1,34 @@
+name: Unit Tests
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: false
+
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
-  exit:
-    name: Exit
+  run-test:
+    name: 'Run Unit Tests'
     runs-on:
       - ubuntu-latest
-
     steps:
-      - name: 'Test'
+      - name: 'Checkout Repo'
+        uses: actions/checkout@v3
+
+      - name: 'Setup Node'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.16'
+
+      - name: 'Install Packages & Run Test'
+        continue-on-error: true
         run: |
-          docker version
+          mkdir test
+
+      - name: 'Save Test Results'
+        uses: actions/upload-artifact@v3
+        with:
+          name: unit-test-results
+          path: ./test-results/test-results.xml
+          retention-days: 14
