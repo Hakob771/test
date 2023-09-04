@@ -13,22 +13,6 @@ jobs:
     runs-on:
       - ubuntu-latest
     steps:
-      - name: 'Checkout Repo'
-        uses: actions/checkout@v3
-
-      - name: 'Setup Node'
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18.16'
-
-      - name: 'Install Packages & Run Test'
-        continue-on-error: true
+      - name: check envsubst
         run: |
-          mkdir test
-
-      - name: 'Save Test Results'
-        uses: actions/upload-artifact@v3
-        with:
-          name: unit-test-results
-          path: ./test-results/test-results.xml
-          retention-days: 14
+          envsubst
