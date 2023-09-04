@@ -1,11 +1,7 @@
 name: Unit Tests
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
-  cancel-in-progress: false
-
 on:
-  workflow_call:
+  push:
 
 jobs:
   run-test:
