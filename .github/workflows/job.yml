@@ -1,7 +1,15 @@
 name: Unit Tests
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      bool:
+        options:
+          - "enable"
+          - "disable"
+        default: "enable"
+        required: true
+        type: choice
 
 jobs:
   run-test:
