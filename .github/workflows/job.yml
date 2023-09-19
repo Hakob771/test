@@ -10,6 +10,7 @@ on:
         default: "enable"
         required: true
         type: choice
+  push:
 
 jobs:
   run-test:
@@ -19,4 +20,4 @@ jobs:
     steps:
       - name: check envsubst
         run: |
-          envsubst
+            echo ${{ github.events }}
