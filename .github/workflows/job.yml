@@ -20,4 +20,4 @@ jobs:
     steps:
       - name: check envsubst
         run: |
-            echo ${{ fromJSON(github.events) }}
+            echo ${{ fromJSON(github.event) }}
