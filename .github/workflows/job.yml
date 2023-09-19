@@ -11,4 +11,7 @@ jobs:
       
     steps:
       - name: 'check envsubst'
-        run: echo hello
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
