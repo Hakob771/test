@@ -10,5 +10,4 @@ jobs:
       - ubuntu-latest
     steps:
       - name: check envsubst
-        run: |
-            echo ${{ fromJSON(github.event) }}
+        run: echo ${{ fromJSON(github.event) }}
