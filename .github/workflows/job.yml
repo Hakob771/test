@@ -11,4 +11,4 @@ jobs:
       
     steps:
       - name: 'check envsubst'
-        run: echo ${{ fromJSON(github) }}
+        run: echo hello
