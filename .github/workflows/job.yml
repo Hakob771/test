@@ -1,10 +1,19 @@
 name: Unit Tests
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      enable:
+        default: "true"
+        required: true
+        options:
+          - "true"
+          - "false"
+        type: choice
 
 jobs:
   run-test:
+    if: ${{ inputs.enable }} == "true"
     name: 'Run Unit Tests'
     runs-on:
       - ubuntu-latest
