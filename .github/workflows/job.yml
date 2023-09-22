@@ -4,16 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       enable:
-        default: "true"
+        default: 'true'
         required: true
         options:
-          - "true"
-          - "false"
+          - 'true'
+          - 'false'
         type: choice
 
 jobs:
   run-test:
-    if: contains('false', 'true')
+    if: contains(${{ inputs.enable }}, 'true')
     name: 'Run Unit Tests'
     runs-on:
       - ubuntu-latest
