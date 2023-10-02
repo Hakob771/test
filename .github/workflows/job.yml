@@ -17,5 +17,5 @@ jobs:
         env:
           APP_NAME: 'Jango'
         run: |
-          envsubst '$APP_NAME' < file > file2
+          envsubst < file > file2
           cat file2
