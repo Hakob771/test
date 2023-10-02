@@ -10,10 +10,12 @@ jobs:
       - ubuntu-latest
       
     steps:
-      - name: 'export variable'
-        run:
-          export APP_NAME=jango
-          
-      - name: 'echo variable'
-        run:
-          echo $APP_NAME
+      - name: checkout
+        uses: actions/checkout@v3
+        
+      - name: 'envsubst'
+        env:
+          APP_NAME: 'Jango'
+        run: |
+          envsubst '$APP_NAME' < file > file2
+          cat file2
