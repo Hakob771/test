@@ -2,25 +2,18 @@ name: Unit Tests
 
 on:
   workflow_dispatch:
-    inputs:
-      enable:
-        default: 'true'
-        required: true
-        options:
-          - 'true'
-          - 'false'
-        type: choice
-
+  
 jobs:
   run-test:
-    if: inputs.enable == 'true'
-    name: 'Run Unit Tests'
+    name: 'A'
     runs-on:
       - ubuntu-latest
       
     steps:
-      - name: 'check envsubst'
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          echo "$GITHUB_CONTEXT"
+      - name: 'export variable'
+        run:
+          export APP_NAME=jango
+          
+      - name: 'echo variable'
+        run:
+          echo $APP_NAME
