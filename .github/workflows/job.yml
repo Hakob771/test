@@ -2,6 +2,10 @@ name: Unit Tests
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        required: true
+        type: string
   
 jobs:
   run-test:
@@ -13,6 +17,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
         
-      - name: 'envsubst'
+      - name: 'yq'
         run: |
-          yq --help
+          yq -i '.korio.image.tag = "tagmag"' file.yaml
+          cat file.yaml
