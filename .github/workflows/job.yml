@@ -14,8 +14,5 @@ jobs:
         uses: actions/checkout@v3
         
       - name: 'envsubst'
-        env:
-          APP_NAME: 'Jango'
         run: |
-          envsubst < file > file2
-          cat file2
+          yq --help
