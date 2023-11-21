@@ -19,5 +19,5 @@ jobs:
         
       - name: 'yq'
         run: |
-          yq -i '.korio.image.tag = "tagmag"' file.yaml
+          yq -i '.korio.image.tag = "${{ inputs.tag }}"' file.yaml
           cat file.yaml
