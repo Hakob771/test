@@ -19,5 +19,4 @@ jobs:
         
       - name: 'yq'
         run: |
-          yq -i '.korio.image.tag = "${{ inputs.tag }}"' file.yaml
-          cat file.yaml
+          echo $GITHUB_WORKFLOW_SHA
