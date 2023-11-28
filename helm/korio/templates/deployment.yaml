@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Values.appName }}'
+  labels:
+    app: '{{ .Values.appName }}'
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: '{{ .Values.appName }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ .Values.appName }}'
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: '{{ .Values.appName }}'
+          image: "{{ .Values.image.registry }}/{{ .Values.appName }}:{{ .Values.image.tag }}"
+          imagePullPolicy: '{{ .Values.image.pullPolicy }}'
+          {{- if .Values.deploy.securityContextEnabled }}
+          securityContext:
+            {{- toYaml .Values.deploy.securityContext | nindent 12 }}
+          {{- end }}
+          envFrom:
+          - configMapRef:
+              name: '{{ .Values.appName }}'
+              optional: true
+          - secretRef:
+              name: '{{ .Values.appName }}'
+              optional: true
+          {{- if or .Values.secretFrom  .Values.envFrom }}
+          env:
+          {{- end }}
+          {{- range $key, $value := .Values.secretFrom }}
+          - name: '{{ $key }}'
+            valueFrom:
+              secretKeyRef:
+                name: '{{ $value }}'
+                key: '{{ $key }}'
+          {{- end }}
+          {{- range $key, $value := .Values.envFrom }}
+          - name: '{{ $key }}'
+            valueFrom:
+              configMapKeyRef:
+                name: '{{ $value }}'
+                key: '{{ $key }}'
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          {{- if .Values.livenessProbeEnabled }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbeEnabled }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.startupProbeEnabled }}
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

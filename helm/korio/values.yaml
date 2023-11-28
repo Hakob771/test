@@ -1,0 +1,87 @@
+# -- Name of the resources
+appName: "host-react"
+
+deploy:
+  # -- Configure Container Security Context
+  securityContextEnabled: true
+  securityContext:
+    capabilities:
+      drop: 
+      - ALL
+    readOnlyRootFilesystem: false # TODO: Move application files
+    runAsNonRoot: false # TODO: Add UID
+    allowPrivilegeEscalation: false
+    seccompProfile:
+      type: RuntimeDefault
+    # runAsUser: 1000
+    # runAsGroup: 1000
+
+image:
+  # -- Conatainer image registry
+  registry: "korio.azurecr.io"
+  # -- Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+  # -- Image pull policy
+  pullPolicy: Always
+  # -- List of Image registry secrets. The secret must be in the same namespace.
+  pullSecrets: []
+
+service:
+  # -- Enable the creation of a service for the application
+  enabled: true
+  # -- Application service type
+  type: ClusterIP
+  # -- Application service port
+  port: 8080
+
+ingress:
+  # -- Enable the creation of an ingress for the application
+  enabled: false
+  # -- IngressClass that will be be used to implement the Ingress
+  class: "webapprouting.kubernetes.azure.com"
+  # -- Ingress host. Must be publicly avalaiable
+  host: "aks-dev.korioclinical.com"
+  # -- Ingress path. The `rewrite` must be `true` if the path is other than `/`
+  path: '/'
+  # -- Enable the Nginx rewrite for custom paths
+  rewrite: false
+  # -- Force SSL redirect without checking the TLS avalaibily. Must be `true` if TLS termination is outside of the cluster.
+  forceSsl: true
+  # -- TLS secret for the application ingress
+  tlsSecret: "korio-tls"
+  # -- Annotations for the application ingress. To enable certificate autogeneration, place here your cert-manager annotations.
+  annotations: 
+    nginx.ingress.kubernetes.io/cors-allow-something: "*"
+
+resources: {}
+  # -- The resources limits for the application containers
+  # limits: 
+  #   memory: "256M"
+  #   cpu: "100m"
+  # -- The requested resources for the application containers
+  # requests: 
+  #   memory: "512M"
+  #   cpu: "250m"
+
+# -- Terraform managed secrets.
+secretFrom: {}
+
+# -- Terraform managed secrets.
+envFrom: {}
+
+# -- Secrets list (sensetive).
+secret: {}
+  # TOKEN: "token"
+
+# -- Environment variables list (non-sensetive).
+env: {}
+  # PORT: 8080
+
+# -- [Node labels for application pods assignment](https://kubernetes.io/docs/user-guide/node-selection/)
+nodeSelector: {}
+
+# -- [Tolerations for application pods assignment](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)
+tolerations: []
+
+# -- [Affinity for application pods assignment](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
+affinity: {}

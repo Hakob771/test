@@ -1,0 +1,13 @@
+{{- if .Values.env }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: '{{ .Values.appName }}'
+  labels:
+    app: '{{ .Values.appName }}'
+data:
+  PORT: '{{ .Values.service.port }}'
+  {{- range $key, $value := .Values.env }}
+  {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}

@@ -1,0 +1,41 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Values.appName }}"
+  annotations:
+    # TODO
+    # {{- range $key, $value := .Values.ingress.annotations }}
+    # {{ $key }}: {{ $value | quote }}
+    # {{- end }}
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "{{ .Values.ingress.forceSsl }}"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "*"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "*"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    {{- if .Values.ingress.rewrite }}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: "/{{- if .Values.ingress.rewrite -}}$2{{- end }}"
+    {{- end }}
+spec:
+  ingressClassName: "{{ .Values.ingress.class }}"
+  {{- if .Values.ingress.tlsSecret }}
+  tls:
+  - hosts:
+      - "{{ .Values.ingress.host }}"
+    secretName: "{{ .Values.ingress.tlsSecret }}"
+  {{- end }}
+  rules:
+    - host: "{{ .Values.ingress.host }}"
+      http:
+        paths:
+          - path: "{{ .Values.ingress.path }}{{- if .Values.ingress.rewrite -}}(/|$)(.*){{- end }}"
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .Values.appName }}"
+                port:
+                  number: {{ .Values.service.port }}
+{{- end }}
