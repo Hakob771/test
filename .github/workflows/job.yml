@@ -1,23 +1,23 @@
-name: Unit Tests
+name: Publish ACR
 
 on:
   workflow_dispatch:
-    inputs:
-      tag:
-        required: true
-        type: string
-  
+
 jobs:
-  run-test:
-    name: 'A'
-    runs-on:
-      - ubuntu-latest
-      
+  build:
+    name: publish acr
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-        
-      - name: 'yq'
+      - uses: actions/checkout@v2
+        name: checkout repo
+
+      - name: install helm
+        uses: Azure/setup-helm@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: esim
         run: |
-          ls
-          pwd
+          helm chart --help
+          helm chart push --help
+          
