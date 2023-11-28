@@ -19,4 +19,5 @@ jobs:
         
       - name: 'yq'
         run: |
-          echo $GITHUB_WORKFLOW_SHA
+          ls
+          pwd
