@@ -1,15 +1,11 @@
-name: Publish ACR
+name: test
 
 on:
   workflow_dispatch:
-    inputs:
-      exit_code:
-        required: true
-        type: number
 
 jobs:
-  build:
-    name: publish acr
+  test:
+    name: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -17,4 +13,9 @@ jobs:
 
       - name: run exit
         run: |
-          exit ${{ inputs.exit_code }}
+          exit 199
+
+      - name: continue
+        continue-on-error: true
+        run: |
+          echo barev
