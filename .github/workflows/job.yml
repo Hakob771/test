@@ -16,6 +16,6 @@ jobs:
           exit 199
 
       - name: continue
-        if: always()
+        if: success() || failure()
         run: |
           echo barev
