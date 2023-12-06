@@ -11,11 +11,6 @@ jobs:
       - uses: actions/checkout@v2
         name: checkout repo
 
-      - name: run exit
+      - name: run echo
         run: |
-          exit 199
-
-      - name: continue
-        if: success() || failure()
-        run: |
-          echo barev
+          echo ${GITHUB_SHA:0:8}
