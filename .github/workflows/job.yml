@@ -1,7 +1,10 @@
 name: test
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+    - '[0-9].+[0-9].+[0-9]+-+rc+[0-9]'
+
 
 jobs:
   test:
@@ -10,7 +13,3 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: checkout repo
-
-      - name: run echo
-        run: |
-          echo ${GITHUB_SHA:0:8}
